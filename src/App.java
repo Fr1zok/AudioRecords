@@ -2,24 +2,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class App {
+
+    private static final String DIVIDER = "-----------------------------------------------------------------------------";
+
+    private static KeyboardManager kb = KeyboardManager.getInstance();
+
     public static void main(String[] args) {
-
-        KeyboardManager kb = KeyboardManager.getInstance();
-
         List<Record> records = new ArrayList<>();
         records.add(new Record("TWIST", "Chubby Checker", (short) 215, Style.ROCKNROLL));
         records.add(new Record("SMOOTH", "Santana Featuring Rob Thomas", (short) 253, Style.LATINPOP));
         records.add(new Record("MACK THE KNIFE", "Bobby Darin", (short) 192, Style.JAZZ));
 
-        System.out.println("1: add new record to collection");
-        System.out.println("2: remove record from collection");
-        System.out.println("3: show collection");
-        System.out.println("4: record collection to disk");
-        System.out.println("0: exit");
-
-
         int option = -1;
         while (option != 0) {
+            System.out.println(DIVIDER);
+            System.out.println("1: add new record to collection");
+            System.out.println("2: remove record from collection");
+            System.out.println("3: show collection");
+            System.out.println("4: record collection to disk");
+            System.out.println("0: exit");
             System.out.print("Please, enter command: ");
             option = kb.getNumber();
             switch (option) {
@@ -28,7 +29,7 @@ public class App {
                 case 0:
                     break;
                 case 1:
-                    addNewRecord();
+                    int i = addNewRecord(records);
                     break;
                 case 2:
                     removeRecord();
@@ -45,10 +46,42 @@ public class App {
         }
     }
 
-    private static void addNewRecord(){}
+    private static int addNewRecord(List<Record> records){
+        int option = -1;
+        while (option != 0) {
+            System.out.println(DIVIDER);
+            for (int i = 0; i < records.size(); i++) {
+                System.out.print(i + 1);
+                System.out.print(". ");
+                Record record = records.get(i);
+                System.out.print(record.getStyle());
+                System.out.print(" - ");
+                System.out.print(record.getAuthor());
+                System.out.print(" - ");
+                System.out.print(record.getName());
+                System.out.print(" - ");
+                System.out.println(convertSecondsToMinSec(record.getLength()));
+            }
+            System.out.print("Please, enter composition number (0 - back): ");
+            option = kb.getNumber();
+            if (option > records.size()) {
+                System.out.println("Wrong number!!!");
+            } else {
+                return option;
+            }
+        }
+        return 0;
+    }
     private static void removeRecord(){}
     private static void showCollection(){}
     private static void recordCollection(){}
+
+    private static String convertSecondsToMinSec(short length) {
+        int minutes = length / 60;
+        int seconds = length % 60;
+        String secondsString = seconds < 10 ? "0" + seconds : String.valueOf(seconds);
+        return minutes + ":" + secondsString;
+    }
 
         /*
         List<Track> files = new ArrayList<Track>();
