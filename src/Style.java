@@ -3,5 +3,15 @@ public enum Style {
     ROCK,
     ROCKNROLL,
     LATINPOP,
-    JAZZ
+    JAZZ,
+    ELECTROHOUSE,
+    DANCE,
+    POPROCK,
+    RNB,
+    FUNK,
+    HIPHOP,
+    SOFTROCK,
+    FOLK,
+    EASYLISTENING,
+    DISCO
 }
