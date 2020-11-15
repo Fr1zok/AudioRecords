@@ -1,10 +1,10 @@
 import java.util.Objects;
 
 public class Record {
-    private String name;
-    private String author;
-    private short length;
-    private Style style;
+    private final String name;
+    private final String author;
+    private final short length;
+    private final Style style;
 
     public Record(String name, String author, short length, Style style) {
         this.name = name;

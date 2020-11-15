@@ -4,14 +4,9 @@ import java.util.Objects;
 
 public class Disc {
     private short capacity = 4800;
-    private List<Record> records = new ArrayList<>();
+    private final List<Record> records = new ArrayList<>();
 
     public Disc() {
-    }
-
-    public Disc(short capacity, List<Record> records) {
-        this.capacity = capacity;
-        this.records = records;
     }
 
     public String addTrack(Record record) {
@@ -22,6 +17,11 @@ public class Disc {
             capacity -= record.getLength();
             return "Track Added.";
         }
+    }
+
+    public String removeTrack(int selectedTrackNumber) {
+        records.remove(selectedTrackNumber);
+        return "Track removed";
     }
 
     public String recordCollection() {
